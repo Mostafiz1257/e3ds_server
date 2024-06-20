@@ -1,19 +1,26 @@
 import cors from 'cors';
 import express, { Application, Request, Response } from 'express';
-import { ProductRoutes } from './app/modules/product/product.route';
+import router from './app/routes';
+import errorMiddleware from './app/errors/errorMiddleware';
 const app: Application = express();
 
 //parser
 app.use(express.json());
 app.use(cors());
 
-//application routes
-app.use('/api/products', ProductRoutes);
 
-const getAController = (req: Request, res: Response) => {
-  res.send('Hello World!');
-};
-app.get('/', getAController);
+app.use('/', router); 
 
-console.log(process.cwd());
+
+
+app.use((req: Request, res: Response) => {
+  res.status(400).json({
+    statusCode:400,
+   success:false,
+   message:"Route not found"
+  })
+ });
+ 
+ app.use(errorMiddleware);
+
 export default app;
