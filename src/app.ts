@@ -11,6 +11,10 @@ app.use(cors());
 
 app.use('/', router); 
 
+const getAController = (req: Request, res: Response) => {
+  res.send('Meeting room booking service backend server is On!');
+};
+app.get('/', getAController);
 
 
 app.use((req: Request, res: Response) => {

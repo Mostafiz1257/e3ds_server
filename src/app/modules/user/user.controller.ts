@@ -11,7 +11,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
       message: 'User is created successfully',
       data: result,
     });
-  } catch (error: any) {
+  } catch (error) {
     next(error); // Pass the error to the error handling middleware
   }
 };
