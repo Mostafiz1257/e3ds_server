@@ -12,7 +12,7 @@ router.post('/rooms',auth(USER_ROLE.admin), validateRequest(RoomValidation.roomV
 router.put('/rooms/:id',auth(USER_ROLE.admin), validateRequest(RoomValidation.updateRoomValidationSchema),RoomController.updateRoom)
 
 
-router.get('/rooms',auth(USER_ROLE.admin),RoomController.getAllRooms)
+router.get('/rooms',RoomController.getAllRooms)
 router.get('/rooms/:id',RoomController.getSingleRoom)
 router.delete('/rooms/:id',auth(USER_ROLE.admin),RoomController.deleteRoom)
 

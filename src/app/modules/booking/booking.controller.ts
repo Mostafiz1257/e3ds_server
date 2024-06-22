@@ -63,14 +63,7 @@ const updateBooking = catchAsync(async (req: Request, res: Response) => {
 const deleteBooking = catchAsync(async (req: Request, res: Response) => {
   const bookingId = req.params.id;
   const deletedBooking = await BookingService.deleteBookingById(bookingId);
-  // if (!deletedBooking) {
-  //   return res.status(404).json({
-  //     success: false,
-  //     statusCode: 404,
-  //     message: 'No Data Found',
-  //     data: [],
-  //   });
-  // }
+
   sendResponse(res, {
     statusCode: 200,
     success: true,
