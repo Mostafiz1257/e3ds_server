@@ -50,8 +50,8 @@ Access the application live at: [Meeting Room Booking System](https://meeting-ro
     JWT_SECRET=your_jwt_secret
     ```
 4. **Start the server**
-    ```bash
-    npm start
+    ```
+    npm run start:dev
     ```
 5. **Access the application in your localhost**
     Open your browser and navigate to `http://localhost:5000`

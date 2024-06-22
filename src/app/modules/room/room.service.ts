@@ -13,10 +13,19 @@ const getAllRoomFromDb = async()=>{
 
 }
 
-const getSingleRoomFromDb = async(id:string)=>{
-    const result = await Room.findOne({_id:id})
-    return result
-}
+// const getSingleRoomFromDb = async (id:string) => {
+//   const result = await Room.findOne({ _id: id, isDeleted: false });
+//   return result;
+// };
+
+export const getSingleRoomFromDb = async (id: string) => {
+  try {
+    const result = await Room.findOne({ _id: id, isDeleted: false }).exec();
+    return result;
+  } catch (error) {
+    throw new Error('Database query failed');
+  }
+};
 
 const deleteRoomFromDb = async(id:string)=>{
     const result = await Room.findByIdAndUpdate(id,  { isDeleted: true },

@@ -55,7 +55,6 @@ const getAvailableSlotFromDb = async(roomId?:string, date?:string)=>{
 
   const availableSlots = await Slot.find(query).populate('room');
 
-
   return availableSlots;
 }
 

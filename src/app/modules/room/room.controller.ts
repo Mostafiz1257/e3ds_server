@@ -53,17 +53,26 @@ const getSingleRoom = catchAsync(async (req, res) => {
   try {
     const { id } = req.params;
     const result = await RoomService.getSingleRoomFromDb(id);
+    
+    if (!result) {
+      return res.status(404).json({
+        success: false,
+        statusCode: 404,
+        message: 'Room not found',
+      });
+    }
+    
     res.status(200).json({
       success: true,
       statusCode: 200,
-      message: 'Successfully get the room',
+      message: 'Successfully retrieved the room',
       data: result,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      statusCode:400,
-      message: 'Failed to get the room Data by the room id',
+      statusCode: 500,
+      message: 'Failed to get the room data by the room ID',
     });
   }
 });
