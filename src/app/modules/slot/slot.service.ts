@@ -4,8 +4,9 @@ import { Slot } from './slot.model';
 
 const createSlotsIntoDb = async (payload: ISlot) => {
   const existingRoom = await Room.findById(payload.room);
-  if (!existingRoom) {
-    throw new Error('Room not found');
+ 
+  if (!existingRoom || existingRoom.isDeleted) {
+    throw new Error('Room not found ');
   }
 
   const { room, date, startTime, endTime } = payload;
@@ -39,6 +40,7 @@ const createSlotsIntoDb = async (payload: ISlot) => {
 
   return slots;
 };
+
 
 
 const getAvailableSlotFromDb = async(roomId?:string, date?:string)=>{
