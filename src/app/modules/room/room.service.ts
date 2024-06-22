@@ -13,10 +13,6 @@ const getAllRoomFromDb = async()=>{
 
 }
 
-// const getSingleRoomFromDb = async (id:string) => {
-//   const result = await Room.findOne({ _id: id, isDeleted: false });
-//   return result;
-// };
 
 export const getSingleRoomFromDb = async (id: string) => {
   try {

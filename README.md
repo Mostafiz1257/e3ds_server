@@ -35,7 +35,7 @@ Access the application live at: [Meeting Room Booking System](https://meeting-ro
 ### Installation Steps
 1. **Clone the repository**
     ```bash
-    git clone https://github.com/your-repo/meeting-room-booking.git
+    git clone https://github.com/Mostafiz1257/Meeting_room_booking_system_backed.git
     cd meeting-room-booking
     ```
 2. **Install dependencies**
