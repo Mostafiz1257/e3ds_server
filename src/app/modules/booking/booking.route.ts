@@ -18,5 +18,10 @@ router.get('/my-bookings',auth(USER_ROLE.user), BookingController.myBookings)
 
 router.delete('/bookings/:id', auth(USER_ROLE.admin),BookingController.deleteBooking)
 
+router.patch('/delete-userBooking/:id',BookingController.deleteUserBooking )
+
+router.patch('/reject-booking/:id',BookingController.rejectBooking )
+
+
 
 export const BookingRouter = router

@@ -115,6 +115,9 @@ const updateRoom = catchAsync(async (req: Request, res: Response) => {
   }
 });
 
+
+
+
 export const RoomController = {
   createRoom,
   getAllRooms,

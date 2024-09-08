@@ -6,7 +6,8 @@ const app: Application = express();
 
 //parser
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin:['http://localhost:5173','https://meeting-room-theta.vercel.app'], credentials:true}));
+// app.use(cors({origin:'https://meeting-room-theta.vercel.app', credentials:true}));
 
 
 app.use('/', router); 

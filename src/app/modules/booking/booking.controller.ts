@@ -83,6 +83,7 @@ const myBookings = catchAsync(async (req: Request, res: Response) => {
       data: [],
     });
   }
+
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -91,10 +92,49 @@ const myBookings = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const rejectBooking = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const result = await BookingService.rejectBookingIntoDb(id);
+
+  if (!result) {
+    return res.status(404).json({
+      success: false,
+      statusCode: 404,
+      message: 'No Data Found',
+      data: [],
+    });
+  }
+})
+
+const deleteUserBooking = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const result = await BookingService.deleteBookingFromDb(id);
+
+  
+  if (!result) {
+    return res.status(404).json({
+      success: false,
+      statusCode: 404,
+      message: 'Data is not deleting',
+      data: [],
+    });
+  }
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Booking deleted successfully',
+    data: result,
+  });
+
+})
 export const BookingController = {
   createBooking,
   getAllBookings,
   updateBooking,
   myBookings,
   deleteBooking,
+  rejectBooking,
+  deleteUserBooking
 };

@@ -10,5 +10,4 @@ const slotSchema = new Schema<ISlot>({
     isBooked: { type: Boolean, default: false }
 })
 
-
 export const Slot = model<ISlot>("Slot", slotSchema)

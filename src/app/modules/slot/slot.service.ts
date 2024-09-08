@@ -41,8 +41,6 @@ const createSlotsIntoDb = async (payload: ISlot) => {
   return slots;
 };
 
-
-
 const getAvailableSlotFromDb = async(roomId?:string, date?:string)=>{
 
   let query: { [key: string]: any } = { isBooked: false };
@@ -61,10 +59,33 @@ const getAvailableSlotFromDb = async(roomId?:string, date?:string)=>{
 }
 
 
+const getSlotsBySpecificRoomFromDb = async (roomId: string) => {
 
+  const slots = await Slot.find({ room: roomId }).sort({ date: 1, startTime: 1 });
+  return slots;
+};
+
+const getAllSlotsFromDb = async () => {
+  const slots = await Slot.find().populate('room').sort({ date: 1, startTime: 1 });
+  return slots;
+};
+
+const updateSlotInDb = async (slotId: string, payload: Partial<ISlot>) => {
+  const updatedSlot = await Slot.findByIdAndUpdate(slotId, payload, { new: true });
+  return updatedSlot;
+};
+
+const deleteSlotFromDb = async (slotId: string) => {
+  const deletedSlot = await Slot.findByIdAndDelete(slotId);
+  return deletedSlot;
+};
 
 export const SlotService = {
   createSlotsIntoDb,
   getAvailableSlotFromDb,
+  getSlotsBySpecificRoomFromDb,
+  getAllSlotsFromDb,
+  updateSlotInDb, 
+  deleteSlotFromDb, 
 
 };

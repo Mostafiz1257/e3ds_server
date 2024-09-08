@@ -1,4 +1,5 @@
 import { Room } from '../room/room.model';
+import { ISlot } from '../slot/slot.interface';
 import { Slot } from '../slot/slot.model';
 import { User } from '../user/user.model';
 import { IBooking } from './booking.interface';
@@ -64,6 +65,8 @@ const getAllBookingsFromDb = async () => {
 
   return bookings;
 };
+
+
 const updateBookingInDb = async (id: string, updateData: Partial<IBooking>) => {
   const updatedBooking = await Booking.findByIdAndUpdate(
     id,
@@ -112,11 +115,45 @@ const myBookingsFromDb = async(userId: string)=>{
 return bookings;
 }
 
+const rejectBookingIntoDb = async (id: string) => {
+  const updateData: Partial<ISlot> = { isBooked: false };
+
+  const result = await Slot.findByIdAndUpdate(
+    id,
+    { $set: updateData },
+    { new: true, runValidators: true }
+  );
+
+  if (!result) {
+    throw new Error('No data deleting');
+  }
+
+  return result;
+};
+
+const deleteBookingFromDb = async(id:string)=>{
+  // const updateData: Partial<IBooking> = { isDeleted: true };
+
+  const result = await Booking.findByIdAndUpdate(
+    id,
+    {  isDeleted:true },
+    { new: true, runValidators: true }
+  );
+
+  if (!result) {
+    throw new Error('Data not deleting');
+  }
+
+  return result;
+}
+
 
 export const BookingService = {
   createBookingIntoDb,
   getAllBookingsFromDb,
   updateBookingInDb,
   myBookingsFromDb,
-  deleteBookingById
+  deleteBookingById,
+  rejectBookingIntoDb,
+  deleteBookingFromDb
 };

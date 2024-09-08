@@ -18,7 +18,6 @@ const userLoginService = async (email: string, password: string) => {
     address: user.address,
   };
 
-  // Create token and send to the user
   const accessToken = jwt.sign(jwtPayload, config.jwt_access_secret as string, {
     expiresIn: config.jwt_access_expires_in,
   });
@@ -31,6 +30,9 @@ const userLoginService = async (email: string, password: string) => {
     data: jwtPayload,
   };
 };
+
+
+
 
 export const AuthService = {
   userLoginService,
