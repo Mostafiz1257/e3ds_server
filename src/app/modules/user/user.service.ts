@@ -10,7 +10,6 @@ import jwt from 'jsonwebtoken';
 
 const createUserIntoDb = async (user: IUser) => {
   const newUser = await User.create(user);
-console.log("new user",newUser);
   const jwtPayload = {
     _id: newUser._id,
     name: newUser.name,

@@ -31,9 +31,6 @@ const userLoginService = async (email: string, password: string) => {
   };
 };
 
-
-
-
 export const AuthService = {
   userLoginService,
 };

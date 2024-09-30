@@ -2,19 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { UserService } from './user.service';
 import sendResponse from '../../utils/sendResponse';
 import catchAsync from '../../utils/catchAsync';
-// const createUser = async (req: Request, res: Response, next: NextFunction) => {
-//   try {
-//     const result = await UserService.createUserIntoDb(req.body);
-//     sendResponse(res, {
-//       statusCode: 200,
-//       success: true,
-//       message: 'User is created successfully',
-//       data: result,
-//     });
-//   } catch (error) {
-//     next(error); 
-//   }
-// };
+
 const createUser = catchAsync(async (req:Request, res:Response) => {
   const result = await UserService.createUserIntoDb(req.body);
 
@@ -40,6 +28,7 @@ const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     next(error);
   }
 };
+
 const updateUserRole = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
