@@ -8,6 +8,4 @@ export interface IUser {
     role: 'user' | 'admin';
     address: string;
   }
-
-
   export type TUserRole = keyof typeof USER_ROLE;

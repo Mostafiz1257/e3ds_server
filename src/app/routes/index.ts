@@ -1,39 +1,28 @@
 import { Router } from "express";
 import { userRouter } from "../modules/user/user.route";
 import { AuthRouter } from "../modules/auth/auth.router";
-import { RoomRouter } from "../modules/room/room.route";
-import { SlotRouter } from "../modules/slot/slot.route";
-import { BookingRouter } from "../modules/booking/booking.route";
-import { orderRoutes } from "../modules/order/order.route";
+import { JobRouter } from "../modules/jobPost/jobPost.route";
+import { ApplicationRouter } from "../modules/application/application.route";
+
 
 const router = Router();
 
 const moduleRoute = [
     {
-      path: '/api/auth',
+      path: '/api/v1/auth',
       router: userRouter,
     },
     {
-      path: '/api/auth',
+      path: '/api/v1/auth',
       router: AuthRouter,
     },
-   
     {
-      path: '/api',
-      router: RoomRouter,
+    path:'/api/v1/job',
+    router:JobRouter
     },
     {
-      path: '/api',
-      router: SlotRouter,
-    },
-    {
-      path: '/api',
-      router: BookingRouter,
-    },
-    {
-      path:'/api/create-checkout-session',
-      router : orderRoutes
-
+      path:'/api/v1/application',
+      router:ApplicationRouter
     }
    
   ];

@@ -6,14 +6,13 @@ const app: Application = express();
 
 //parser
 app.use(express.json());
-app.use(cors({origin:['http://localhost:5173','https://meeting-room-theta.vercel.app'], credentials:true}));
-
+app.use(cors({origin:['http://localhost:3000'], credentials:true}));
 
 
 app.use('/', router); 
 
 const getAController = (req: Request, res: Response) => {
-  res.send('Meeting room booking service backend server is On!');
+  res.send('Eagle 3D streaming server is running');
 };
 app.get('/', getAController);
 

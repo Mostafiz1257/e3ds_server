@@ -32,9 +32,7 @@ const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
 const updateUserRole = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
-    console.log("id",id);
     const result = await UserService.updateUserRole(id);
-    console.log("result", result);
     sendResponse(res, {
       statusCode: 200,
       success: true,
