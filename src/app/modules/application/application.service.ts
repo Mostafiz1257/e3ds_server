@@ -8,7 +8,7 @@ const createApplicationIntoDb = async (applicationData: IJobApplication): Promis
     await newApplication.save();
     return newApplication;
   } catch (error) {
-    throw new Error('Error creating job application: ' + error.message);
+    throw new Error('Error creating job application: ' );
   }
 };
 
@@ -18,7 +18,7 @@ const getAllApplicationFromDb = async (): Promise<IJobApplication[]> => {
     const applications = await JobApplication.find({ isDeleted: false }).sort({ createdAt: -1 }).populate('jobPost','title salaryRange jobType');
     return applications;
   } catch (error) {
-    throw new Error('Error fetching job applications: ' + error.message);
+    throw new Error('Error fetching job applications: ' );
   }
 };
 
@@ -28,16 +28,26 @@ const deleteApplicationFromDb = async (applicationId: string): Promise<IJobAppli
     const deletedApplication = await JobApplication.findByIdAndUpdate(
       applicationId,
       { isDeleted: true },
-      { new: true } // Return the updated document
+      { new: true } 
     );
     return deletedApplication;
   } catch (error) {
-    throw new Error('Error deleting job application: ' + error.message);
+    throw new Error('Error deleting job application: ' );
   }
 };
 
+
+const getSingleApplicationFromDb = async (applicationId: string): Promise<IJobApplication | null> => {
+  try {
+    const application = await JobApplication.findById(applicationId).populate('jobPost', 'title salaryRange jobType');
+    return application;
+  } catch (error) {
+    throw new Error('Error fetching job application: ' );
+  }
+};
 export const jobApplicationService = {
   createApplicationIntoDb,
   getAllApplicationFromDb,
   deleteApplicationFromDb,
+  getSingleApplicationFromDb
 };

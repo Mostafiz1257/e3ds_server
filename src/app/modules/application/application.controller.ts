@@ -44,8 +44,28 @@ const deleteApplication = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getSingleApplication = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await jobApplicationService.getSingleApplicationFromDb(id);
+  if (!result) {
+    sendResponse(res, {
+      statusCode: 404,
+      success: false,
+      message: 'Job application not found',
+      data: null,
+    });
+    return;
+  }
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Job application retrieved successfully',
+    data: result,
+  });
+});
 export const jobApplicationController = {
   createApplication,
   getAllApplication,
   deleteApplication,
+  getSingleApplication
 };

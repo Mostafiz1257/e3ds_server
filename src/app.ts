@@ -6,7 +6,7 @@ const app: Application = express();
 
 //parser
 app.use(express.json());
-app.use(cors({origin:['http://localhost:3000'], credentials:true}));
+app.use(cors({origin:['http://localhost:3000', 'https://e3dn-client-side-task.vercel.app'], credentials:true}));
 
 
 app.use('/', router); 

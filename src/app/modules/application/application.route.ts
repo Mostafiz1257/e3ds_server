@@ -9,4 +9,6 @@ router.get('/all-application',jobApplicationController.getAllApplication)
 
 router.delete('/:id',jobApplicationController.deleteApplication)
 
+router.get('/:id', jobApplicationController.getSingleApplication);
+
 export const ApplicationRouter = router;
